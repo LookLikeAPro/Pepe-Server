@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+*.sqlite3
+*.pyc
+.idea/
+__pycache__/
+node_modules/
+npm-debug.log
+/static/client
+/static/prerender
