@@ -1,8 +1,4 @@
 __all__ = [
-	"auth",
+	"image",
 	"error",
-	"vendor",
-	"user",
-	"transaction",
-	"manageVendor"
 ]

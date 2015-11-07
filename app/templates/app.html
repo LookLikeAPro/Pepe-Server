@@ -1,21 +1,8 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		{% for stylesheet in stylesheets %}
-			<link rel="stylesheet" href="{{stylesheet}}" />
-		{% endfor %}
 	</head>
 	<body>
-		{% if prerender %}
-			{{prerender}}
-		{% else %}
-			<div id="content"></div>
-		{% endif %}
-		<script type="text/javascript">
-			var __StoreData = {{preload_data}};
-		</script>
-		{% for script in scripts %}
-			<script src="{{script}}"></script>
-		{% endfor %}
+		<img src="{{picture.asset}}" />
 	</body>
 </html>
