@@ -10,6 +10,5 @@ class PictureManager(models.Manager):
 
 class Picture(models.Model):
 	asset = models.CharField(max_length=200)
-	uuid = models.CharField(max_length=200)
 	to_dict = _to_dict
 	objects = PictureManager()

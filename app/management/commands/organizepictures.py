@@ -9,9 +9,9 @@ pepe_dir = './static/pepes/'
 def register_pic(filename):
 	print('register '+filename)
 	random = str(uuid.uuid4())[:8]
-	filename_new = 'pepe-'+random+'.'+filename.split('.')[-1]
+	filename_new = random+'.'+filename.split('.')[-1]
 	os.rename(pepe_dir+filename, pepe_dir+filename_new)
-	Picture.objects.create(uuid=random, asset=filename_new).save()
+	Picture.objects.create(asset=filename_new).save()
 
 class Command(BaseCommand):
 	help = 'organizes and catalogs pepes'
@@ -20,12 +20,9 @@ class Command(BaseCommand):
 		for root, dirs, filenames in os.walk(pepe_dir):
 			for filename in filenames:
 				if filename.endswith('png') or filename.endswith('gif') or filename.endswith('jpg'):
-					if filename.startswith('pepe-'):
-						try:
-							Picture.objects.get(uuid=filename.split('.')[0][5:])
-						except:
-							register_pic(filename)
-					else:
+					try:
+						Picture.objects.get(asset=filename)
+					except:
 						register_pic(filename)
 		for picture in Picture.objects.all():
 			if not os.path.isfile(pepe_dir+picture.asset):
