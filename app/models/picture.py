@@ -9,6 +9,6 @@ class PictureManager(models.Manager):
 		return self.all()[random_index]
 
 class Picture(models.Model):
-	asset = models.CharField(max_length=200)
+	asset = models.CharField(max_length=200, unique=True)
 	to_dict = _to_dict
 	objects = PictureManager()
