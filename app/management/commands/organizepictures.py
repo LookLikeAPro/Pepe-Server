@@ -14,8 +14,9 @@ def register_pic(filename):
 		return
 	random = str(uuid.uuid4())[:8]
 	filename_new = random+'.'+filename.split('.')[-1]
-	Picture.objects.create(uuid=random, asset=filename, dhash=hash_val).save()
-	print('registered: ' + filename)
+	os.rename(pepe_dir+filename, pepe_dir+filename_new)
+	Picture.objects.create(uuid=random, asset=filename_new, dhash=hash_val).save()
+	print('registered: ' + filename_new)
 
 class Command(BaseCommand):
 	help = 'Organizes and catalogs pepes'
