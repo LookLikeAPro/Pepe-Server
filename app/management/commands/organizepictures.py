@@ -1,4 +1,3 @@
-import math
 import os
 import uuid
 from django.core.management.base import BaseCommand, CommandError
@@ -11,17 +10,15 @@ pepe_dir = './static/pepes/'
 def register_pic(filename):
 	hash_val = dhash(Image.open(pepe_dir+filename), hash_size = 128)
 	if Picture.objects.filter(dhash=hash_val).count() > 0:
-		print('duplicate: '+ filename + ' with: ' + Picture.objects.filter(dhash=hash_val).first().asset)
+		print('duplicate: '+ filename + ' ' + Picture.objects.filter(dhash=hash_val).first().asset)
 		return
 	random = str(uuid.uuid4())[:8]
 	filename_new = random+'.'+filename.split('.')[-1]
-	os.rename(pepe_dir+filename, pepe_dir+filename_new)
-	Picture.objects.create(asset=filename_new, dhash=hash_val).save()
-	print('registered: ' + filename_new)
+	Picture.objects.create(uuid=random, asset=filename, dhash=hash_val).save()
+	print('registered: ' + filename)
 
 class Command(BaseCommand):
 	help = 'Organizes and catalogs pepes'
-
 	def handle(self, *args, **options):
 		for root, dirs, filenames in os.walk(pepe_dir):
 			for filename in filenames:

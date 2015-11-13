@@ -9,7 +9,8 @@ class PictureManager(models.Manager):
 		return self.all()[random_index]
 
 class Picture(models.Model):
-	asset = models.CharField(max_length=200, unique=True)
+	asset = models.CharField(max_length=200, unique=True, blank=False)
 	dhash = models.CharField(max_length=1024, unique=True)
+	uuid = models.CharField(max_length=8, unique=True, blank=False)
 	to_dict = _to_dict
 	objects = PictureManager()

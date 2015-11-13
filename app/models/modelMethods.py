@@ -2,14 +2,8 @@ from django.db.models.fields.related import ManyToManyRel, ManyToManyField, Many
 from app.helpers.text import to_camel_case
 
 def _to_dict(self, *args, **kwargs):
-	if ('exclude' in kwargs):
-		exclude_fields = kwargs['exclude']
-	else:
-		exclude_fields = ()
-	if ('include' in kwargs):
-		include_fields = kwargs['include']
-	else:
-		include_fields = ()
+	exclude_fields = kwargs.get('exclude', ())
+	include_fields = kwargs.get('include', ())
 	if ('camel_case' in kwargs):
 		camel_case = True if kwargs['camel_case'] else False
 	else:
