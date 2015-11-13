@@ -10,5 +10,6 @@ class PictureManager(models.Manager):
 
 class Picture(models.Model):
 	asset = models.CharField(max_length=200, unique=True)
+	dhash = models.CharField(max_length=1024, unique=True)
 	to_dict = _to_dict
 	objects = PictureManager()
